@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Serene Sanctuary Medical Spa",
+  "description": "A luxury medical spa application featuring curated aesthetic treatments, skin rejuvenation, and a seamless booking experience.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
