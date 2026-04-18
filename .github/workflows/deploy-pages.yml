@@ -35,7 +35,7 @@ jobs:
       - name: Build
         env:
           # Must match the repository name for project Pages URL: https://<user>.github.io/<repo>/
-          VITE_BASE: /CelineMedicalSpa-website/
+          VITE_BASE: /celine-medical-spa/
         run: npm run build
 
       - name: Upload artifact
