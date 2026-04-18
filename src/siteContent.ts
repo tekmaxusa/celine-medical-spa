@@ -76,26 +76,38 @@ export const copy = {
 
   testimonials: {
     title: 'Trusted Care in Plano',
-    intro: 'Patients tell us they feel safe, calm, and confident in our clinic.',
+    intro: 'Patients say they feel safe, calm, and confident in our clinic.',
     items: [
       {
-        name: 'Rachel M.',
-        role: 'Plano',
-        text: '"Thoughtful and never pushy. My consultation felt like a real conversation—they explained what was appropriate for my skin and what could wait."',
-        initials: 'RM',
+        name: 'Jiwon Chun',
+        role: 'Google review',
+        text: '"Everyone here is so welcoming and kind, the Doctor really takes his time to understand what you’re wanting and gives personalized recommendations. I had an amazing experience and got xeomin injections for my wrinkles. I will definitely be going back for all my aesthetic needs!"',
+        initials: 'JC',
       },
       {
-        name: 'James T.',
-        role: 'DFW area',
-        text: '"I wanted results that still looked like me. The plan was clear, unrushed, and focused on long-term skin health—not quick fixes."',
-        initials: 'JT',
+        name: 'Jill Feldberg',
+        role: 'Google review',
+        text: '"Rachel is amazing! Gave me the best facial treatment ever! I highly recommend her & Celine Medical Spa. Outstanding service."',
+        initials: 'JF',
         highlight: true,
       },
       {
-        name: 'Priya K.',
-        role: 'Plano',
-        text: '"Every question was answered in plain language. I left understanding timing, recovery, and what to expect—no stress, no hard sell."',
-        initials: 'PK',
+        name: 'Brandon Son',
+        role: 'Google review',
+        text: '"From the moment I walked in, I was welcomed so warmly. The staff is friendly, professional, and knowledgeable. With each step, I was informed of the science and specific applications. I also received my first forehead botox procedure—he was informative, very precise, and made me feel very comfortable throughout."',
+        initials: 'BS',
+      },
+      {
+        name: 'Ally Tanghongs',
+        role: 'Google review',
+        text: '"This med spa is phenomenal! The staff is extremely friendly and knowledgeable. My skin is extremely dry and after my facial treatment, my skin was plump, glowing and felt amazing! Definitely will recommend to all of my friends and family."',
+        initials: 'AT',
+      },
+      {
+        name: 'Dan C',
+        role: 'Google review',
+        text: '"Dr. Chae was transparent and very thorough. It’s been about 4 weeks and I’m already seeing new activity. The clinic is clean, modern, and convenient. Overall, my experience and early results have exceeded expectations."',
+        initials: 'DC',
       },
     ],
   },
@@ -141,6 +153,14 @@ export const copy = {
     section1Desc:
       'Precision laser treatment for pigmentation, sun spots, acne scars, and tattoo removal. We plan timing with your lifestyle and sun exposure in mind.',
     section1Cta: 'Call to discuss Pico',
+    winterFeaturedTitle: 'Lift, Tighten & Maintain',
+    winterFeaturedDesc:
+      'In winter, we highlight treatments that support lift, firmness, and long-term collagen—while we plan laser timing around sun exposure.',
+    winterFeaturedCardTitle: 'Ultherapy',
+    winterFeaturedCardDesc:
+      'Focused ultrasound supports collagen at deeper layers for non-surgical tightening along the jawline and neck.',
+    winterFeaturedPrice: 'Consultation',
+    winterFeaturedCta: 'Call to discuss Ultherapy',
     cardUltherapy: {
       title: 'Ultherapy',
       subtitle: 'Lift · Tighten',
@@ -153,53 +173,30 @@ export const copy = {
       desc: 'Radiofrequency skin tightening for gradual, refined improvement—with an emphasis on elasticity and long-term planning.',
       price: 'Consultation',
     },
-    rejuvenationTitle: 'Lift, Tighten & Renew',
-    rejuvenationIntro:
-      'Awaken your skin’s vitality with device-guided care that respects recovery and supports collagen over time.',
-    rejuvenationList: [
+    categoriesTitle: 'Categories & Featured Services',
+    categoriesIntro:
+      'A clear, curated menu—organized by goal. We’ll help you choose what fits your skin, your timeline, and the safest season for treatment.',
+    categories: [
       {
-        name: 'Pixel8 RF',
-        desc: 'RF microneedling for texture, firmness, and collagen renewal.',
-        price: 'Consultation',
+        title: 'Injectables',
+        items: ['Dermal Fillers', 'Skin Boosters', 'PRP Therapy', 'Botox'],
       },
       {
-        name: 'Fracsono',
-        desc: 'Advanced facial treatment to support vitality, firmness, and overall glow.',
-        price: 'Consultation',
+        title: 'Skin Rejuvenation',
+        items: ['RF Microneedling', 'CO2 Laser', 'Hydrafacial', 'Pico Laser'],
       },
       {
-        name: 'Airjet Facial',
-        desc: 'Hydration-forward tightening and rejuvenation for a refreshed appearance.',
-        price: 'Consultation',
-      },
-    ],
-    floatCardTitle: 'Safety first',
-    floatCardText:
-      'Every plan is guided by medical oversight. We prioritize outcomes that age well and preserve facial harmony.',
-    advancedTitle: 'Featured Care',
-    advancedCards: [
-      {
-        name: 'Fracsono',
-        desc: 'Maintenance-minded rejuvenation to support vitality and a healthy-looking glow.',
-        time: 'Varies',
-        price: 'Consultation',
+        title: 'Acne & Specialty Care',
+        items: ['Acne Treatments', 'Anti-Aging Programs', 'Ultherapy'],
       },
       {
-        name: 'Airjet Facial',
-        desc: 'Comfort-forward care that supports hydration and a refreshed, polished look.',
-        time: 'Varies',
-        price: 'Consultation',
-      },
-      {
-        name: 'Consultation',
-        desc: 'Educational, pressure-free visit: goals, skin assessment, clear recommendations, and timing—no obligation to treat the same day.',
-        time: '45m typical',
-        price: 'Complimentary',
+        title: 'Body Treatments',
+        items: ['Laser Hair Removal', 'Body Contouring', 'RF Skin Tightening', 'Tattoo Removal'],
       },
     ],
-    seasonalCtaTitle: 'Pico Laser in Winter: Smarter Timing',
+    seasonalCtaTitle: 'Winter Planning: Smarter Timing',
     seasonalCtaBody:
-      'Winter is often ideal for laser treatments—less intense sun can make healing easier and results more predictable. Ask us when to schedule for your skin.',
+      'Winter is often an ideal time for many treatments—less intense sun can make recovery easier and results more predictable. Ask us what to schedule now and what to save for later.',
     seasonalCtaButton: 'Discuss seasonal timing',
   },
 

@@ -53,6 +53,10 @@ import { copy } from './siteContent';
 
 const SITE_NAME = 'Celine Medical Spa';
 const LOGO_SRC = `${import.meta.env.BASE_URL}celine-logo.png`;
+const isWinter = () => {
+  const m = new Date().getMonth(); // 0=Jan ... 11=Dec
+  return m === 11 || m === 0 || m === 1; // Dec/Jan/Feb
+};
 
 // --- Types ---
 
@@ -151,16 +155,13 @@ const Navbar = ({ currentPage, setPage, user, role }: { currentPage: Page, setPa
           onClick={() => setPage('home')}
           aria-label={SITE_NAME}
         >
-          <div className="shrink-0 rounded-lg overflow-hidden flex items-center justify-center bg-white ring-1 ring-stone-200/70 shadow-sm">
+          <div className="shrink-0 flex items-center justify-center">
             <img
               src={LOGO_SRC}
-              alt=""
-              className="h-9 md:h-11 w-auto max-h-[44px] md:max-h-[52px] object-contain block"
+              alt={SITE_NAME}
+              className="h-11 sm:h-12 md:h-14 w-auto max-h-[56px] md:max-h-[64px] object-contain block"
             />
           </div>
-          <span className="font-headline tracking-wide leading-tight text-sm sm:text-base md:text-xl text-stone-900">
-            {SITE_NAME}
-          </span>
         </button>
         
         <div className="hidden md:flex items-center gap-2">
@@ -281,7 +282,7 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
         <img
           src={LOGO_SRC}
           alt={SITE_NAME}
-          className="h-14 w-auto max-w-[200px] object-contain mx-auto md:mx-0"
+          className="h-[72px] md:h-[84px] w-auto max-w-[340px] md:max-w-[420px] object-contain mx-auto md:mx-0"
         />
         <p className="text-sm font-medium text-on-surface">{copy.footer.tagline}</p>
         <p className="text-sm text-on-surface-variant max-w-xs mx-auto md:mx-0 leading-relaxed">
@@ -322,13 +323,25 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
 
 // --- Pages ---
 
-const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
-  <motion.div 
-    key="home-page"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-  >
+const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => {
+  const testimonialsTrackRef = React.useRef<HTMLDivElement | null>(null);
+
+  const scrollTestimonialsBy = (dir: -1 | 1) => {
+    const el = testimonialsTrackRef.current;
+    if (!el) return;
+    const firstCard = el.querySelector<HTMLElement>('[data-review-card="true"]');
+    const cardWidth = firstCard?.getBoundingClientRect().width ?? 360;
+    // 24px = gap-6
+    el.scrollBy({ left: dir * Math.round(cardWidth + 24), behavior: 'smooth' });
+  };
+
+  return (
+    <motion.div 
+      key="home-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
     {/* Hero — spa name only in navbar; photo stays sharp (no text on image) */}
     <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -348,8 +361,8 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
       </div>
       <div className="container mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div className="max-w-xl lg:max-w-2xl">
-          <div className="rounded-2xl border border-stone-200/90 bg-white/95 p-8 md:p-10 shadow-[0_24px_60px_-20px_rgba(15,23,42,0.14)]">
-            <p className="text-primary text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase mb-5">
+          <div className="rounded-2xl border border-stone-200/80 bg-white/90 p-7 md:p-8 shadow-[0_22px_56px_-22px_rgba(15,23,42,0.16)] backdrop-blur-sm">
+            <p className="text-primary text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase mb-4">
               {copy.hero.eyebrow}
             </p>
             <h1 className="font-headline text-stone-900 leading-[1.15] mb-5">
@@ -360,20 +373,9 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
                 {copy.hero.headlineAccent}
               </span>
             </h1>
-            <p className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-prose mb-6">
+            <p className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-prose mb-7">
               {copy.hero.sub}
             </p>
-            <p className="text-xs sm:text-sm text-stone-600 font-medium tracking-wide mb-8 border-l-2 border-primary/40 pl-3">
-              {copy.region}
-            </p>
-            <ul className="mb-10 space-y-3 text-stone-700 text-sm md:text-[0.95rem]">
-              {copy.hero.bullets.map((b) => (
-                <li key={b} className="flex items-start gap-3">
-                  <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={18} strokeWidth={2} />
-                  <span className="leading-snug">{b}</span>
-                </li>
-              ))}
-            </ul>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
               <button 
                 type="button"
@@ -430,22 +432,41 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <div className="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low aspect-[16/9]">
-            <img 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-              src={IMG.pico} 
-              alt="Pico laser treatment"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-8 text-white text-left">
-              <p className="text-white/80 text-xs font-semibold tracking-widest uppercase mb-2">{copy.homeTreatments.pico.subtitle}</p>
-              <h3 className="text-3xl mb-2">{copy.homeTreatments.pico.title}</h3>
-              <p className="text-white/85 mb-4 max-w-md text-sm leading-relaxed">{copy.homeTreatments.pico.desc}</p>
-              <button type="button" onClick={() => setPage('services')} className="inline-flex items-center text-sm font-bold tracking-widest uppercase">
-                Learn more <ArrowRight className="ml-2" size={16} />
-              </button>
+          {!isWinter() ? (
+            <div className="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low aspect-[16/9]">
+              <img 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                src={IMG.pico} 
+                alt="Pico laser treatment"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"></div>
+              <div className="absolute bottom-0 left-0 p-8 text-white text-left max-w-[44rem]">
+                <p className="text-white/80 text-xs font-semibold tracking-widest uppercase mb-2">{copy.homeTreatments.pico.subtitle}</p>
+                <h3 className="text-3xl mb-2 font-headline">{copy.homeTreatments.pico.title}</h3>
+                <p className="text-white/85 mb-4 max-w-md text-sm leading-relaxed">{copy.homeTreatments.pico.desc}</p>
+                <button type="button" onClick={() => setPage('services')} className="inline-flex items-center text-sm font-bold tracking-widest uppercase">
+                  Learn more <ArrowRight className="ml-2" size={16} />
+                </button>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low aspect-[16/9]">
+              <img 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                src={IMG.derma} 
+                alt="Ultherapy skin tightening"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"></div>
+              <div className="absolute bottom-0 left-0 p-8 text-white text-left max-w-[44rem]">
+                <p className="text-white/80 text-xs font-semibold tracking-widest uppercase mb-2">{copy.homeTreatments.ultherapy.subtitle}</p>
+                <h3 className="text-3xl mb-2 font-headline">{copy.homeTreatments.ultherapy.title}</h3>
+                <p className="text-white/90 mb-4 max-w-md text-sm leading-relaxed">{copy.homeTreatments.ultherapy.desc}</p>
+                <button type="button" onClick={() => setPage('services')} className="inline-flex items-center text-sm font-bold tracking-widest uppercase">
+                  Learn more <ArrowRight className="ml-2" size={16} />
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="md:col-span-4 group relative overflow-hidden rounded-xl bg-secondary-container">
             <div className="p-8 flex flex-col h-full justify-between">
@@ -505,20 +526,53 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
         aria-hidden
       />
       <div className="max-w-7xl mx-auto px-8 relative z-10">
-        <div className="text-center mb-6 max-w-2xl mx-auto">
-          <h2 className="text-4xl text-on-surface">{copy.testimonials.title}</h2>
-          <p className="text-on-surface-variant mt-4 text-sm leading-relaxed">{copy.testimonials.intro}</p>
-          <div className="h-1 w-20 bg-primary-container mx-auto mt-6"></div>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl text-on-surface">{copy.testimonials.title}</h2>
+            <p className="text-on-surface-variant mt-4 text-sm leading-relaxed">{copy.testimonials.intro}</p>
+            <div className="h-1 w-20 bg-primary-container mt-6"></div>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollTestimonialsBy(-1)}
+              className="h-11 w-11 rounded-full bg-white/90 ring-1 ring-stone-200 shadow-sm hover:bg-white transition-colors grid place-items-center text-stone-700"
+              aria-label="Scroll reviews left"
+            >
+              <ArrowRight className="rotate-180" size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollTestimonialsBy(1)}
+              className="h-11 w-11 rounded-full bg-white/90 ring-1 ring-stone-200 shadow-sm hover:bg-white transition-colors grid place-items-center text-stone-700"
+              aria-label="Scroll reviews right"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {copy.testimonials.items.map((t, i) => (
-            <div key={t.initials} className={`bg-white p-8 rounded-xl shadow-sm border border-stone-200/50 ${'highlight' in t && t.highlight ? 'transform md:-translate-y-4' : ''}`}>
+
+        <div
+          ref={testimonialsTrackRef}
+          className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-8 px-8 hide-scrollbar"
+          aria-label="Reviews carousel"
+        >
+          {copy.testimonials.items.map((t) => (
+            <article
+              key={t.initials}
+              data-review-card="true"
+              className={`snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white p-8 rounded-xl shadow-sm border border-stone-200/50 ${
+                'highlight' in t && t.highlight ? 'md:-translate-y-2 md:shadow-md' : ''
+              }`}
+            >
               <div className="flex text-primary mb-6">
                 {[...Array(5)].map((_, j) => <Star key={j} size={18} fill="currentColor" />)}
               </div>
               <p className="italic text-on-surface-variant mb-8 leading-relaxed">{t.text}</p>
               <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${t.initials === 'JT' ? 'bg-secondary-container text-secondary' : 'bg-primary-container text-primary'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                  'highlight' in t && t.highlight ? 'bg-secondary-container text-secondary' : 'bg-primary-container text-primary'
+                }`}>
                   {t.initials}
                 </div>
                 <div>
@@ -526,7 +580,7 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
                   <p className="text-xs text-on-surface-variant">{t.role}</p>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -558,8 +612,9 @@ const HomePage: React.FC<{ setPage: (p: Page) => void }> = ({ setPage }) => (
         </div>
       </div>
     </section>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const ServicesPage: React.FC = () => (
   <motion.div 
@@ -569,7 +624,7 @@ const ServicesPage: React.FC = () => (
     exit={{ opacity: 0 }}
   >
     {/* Hero */}
-    <section className="relative h-[60vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-28 pb-16">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
           className="hero-bg-photo absolute inset-0 h-full w-full max-w-none object-cover object-center"
@@ -589,7 +644,7 @@ const ServicesPage: React.FC = () => (
           <span className="inline-block text-primary font-semibold tracking-[0.2em] uppercase text-xs sm:text-sm mb-4">
             {copy.servicesPage.heroEyebrow}
           </span>
-          <h1 className="text-5xl md:text-7xl font-headline text-on-surface leading-tight mb-6 drop-shadow-sm">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-headline text-on-surface leading-tight mb-5">
             {copy.servicesPage.heroTitle}
           </h1>
           <p className="text-lg font-medium text-on-surface leading-relaxed max-w-xl">
@@ -599,13 +654,17 @@ const ServicesPage: React.FC = () => (
       </div>
     </section>
 
-    {/* Pico + lift / RF */}
+    {/* Featured (seasonal rule: hide Pico in winter) */}
     <section className="py-24 px-8 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
         <div className="max-w-xl">
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{copy.servicesPage.section1Label}</p>
-          <h2 className="text-4xl text-on-surface mb-4 font-headline">{copy.servicesPage.section1Title}</h2>
-          <p className="text-on-surface-variant leading-relaxed">{copy.servicesPage.section1Desc}</p>
+          <h2 className="text-4xl text-on-surface mb-4 font-headline">
+            {isWinter() ? copy.servicesPage.winterFeaturedTitle : copy.servicesPage.section1Title}
+          </h2>
+          <p className="text-on-surface-variant leading-relaxed">
+            {isWinter() ? copy.servicesPage.winterFeaturedDesc : copy.servicesPage.section1Desc}
+          </p>
         </div>
         <div className="text-secondary tracking-widest text-sm border-b border-outline-variant/30 pb-2 uppercase font-bold">Physician-guided</div>
       </div>
@@ -615,18 +674,24 @@ const ServicesPage: React.FC = () => (
           <div className="aspect-[16/9] overflow-hidden">
             <img 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-              src={IMG.ipl} 
-              alt="Pico laser treatment"
+              src={isWinter() ? IMG.derma : IMG.ipl} 
+              alt={isWinter() ? 'Ultherapy skin tightening' : 'Pico laser treatment'}
             />
           </div>
           <div className="p-8">
             <div className="flex justify-between items-start mb-4 flex-wrap gap-2">
-              <h3 className="text-2xl font-headline text-on-surface">{copy.servicesPage.section1Title}</h3>
-              <span className="text-primary font-semibold text-sm">{copy.servicesPage.section1Price}</span>
+              <h3 className="text-2xl font-headline text-on-surface">
+                {isWinter() ? copy.servicesPage.winterFeaturedCardTitle : copy.servicesPage.section1Title}
+              </h3>
+              <span className="text-primary font-semibold text-sm">
+                {isWinter() ? copy.servicesPage.winterFeaturedPrice : copy.servicesPage.section1Price}
+              </span>
             </div>
-            <p className="text-on-surface-variant mb-6 leading-relaxed">{copy.servicesPage.section1Desc}</p>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">
+              {isWinter() ? copy.servicesPage.winterFeaturedCardDesc : copy.servicesPage.section1Desc}
+            </p>
             <a href={copy.homeCta.phoneTel} className="text-primary font-medium inline-flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-              {copy.servicesPage.section1Cta} <ArrowRight size={16} />
+              {isWinter() ? copy.servicesPage.winterFeaturedCta : copy.servicesPage.section1Cta} <ArrowRight size={16} />
             </a>
           </div>
         </div>
@@ -635,7 +700,7 @@ const ServicesPage: React.FC = () => (
           <div className="bg-surface-container-low p-8 rounded-xl flex-1 flex flex-col justify-center">
             <span className="text-secondary text-xs tracking-widest uppercase mb-2 font-bold">{copy.servicesPage.cardUltherapy.subtitle}</span>
             <img
-              src={IMG.pico}
+              src={IMG.derma}
               alt=""
               className="w-full h-36 object-cover rounded-lg mb-4"
             />
@@ -661,74 +726,35 @@ const ServicesPage: React.FC = () => (
       </div>
     </section>
 
-    {/* Skin Rejuvenation */}
+    {/* Categories & Featured Services */}
     <section className="bg-surface-container-low py-24 px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div className="relative">
-          <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
-            <img 
-              className="w-full h-full object-cover" 
-              src={IMG.antiAging} 
-              alt="Skin rejuvenation facial treatment"
-            />
-          </div>
-          <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-xl shadow-xl max-w-xs hidden lg:block border border-primary/5">
-            <ShieldCheck className="text-primary mb-4" size={40} />
-            <h4 className="text-lg mb-2">{copy.servicesPage.floatCardTitle}</h4>
-            <p className="text-sm text-on-surface-variant">{copy.servicesPage.floatCardText}</p>
-          </div>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl text-on-surface mb-4">{copy.servicesPage.categoriesTitle}</h2>
+          <p className="text-on-surface-variant max-w-3xl mx-auto leading-relaxed">{copy.servicesPage.categoriesIntro}</p>
+          <div className="w-16 h-1 bg-primary-container mx-auto mt-8"></div>
         </div>
-        <div className="space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-4xl text-primary">{copy.servicesPage.rejuvenationTitle}</h2>
-            <p className="text-on-surface-variant leading-relaxed">{copy.servicesPage.rejuvenationIntro}</p>
-          </div>
-          <div className="space-y-8">
-            {copy.servicesPage.rejuvenationList.map((s, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="flex justify-between items-center pb-4 border-b border-outline-variant/30 group-hover:border-primary transition-colors">
-                  <div>
-                    <h4 className="text-xl group-hover:text-primary transition-colors">{s.name}</h4>
-                    <p className="text-sm text-on-surface-variant mt-1">{s.desc}</p>
-                  </div>
-                  <span className="text-primary font-bold">{s.price}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
 
-    {/* Advanced Skincare */}
-    <section className="py-24 px-8 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl text-on-surface mb-4">{copy.servicesPage.advancedTitle}</h2>
-        <div className="w-16 h-1 bg-primary-container mx-auto"></div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { name: copy.servicesPage.advancedCards[0].name, icon: <Droplets />, image: IMG.hydrafacial, desc: copy.servicesPage.advancedCards[0].desc, time: copy.servicesPage.advancedCards[0].time, price: copy.servicesPage.advancedCards[0].price },
-          { name: copy.servicesPage.advancedCards[1].name, icon: <Sparkles />, image: IMG.plasma, desc: copy.servicesPage.advancedCards[1].desc, time: copy.servicesPage.advancedCards[1].time, price: copy.servicesPage.advancedCards[1].price },
-          { name: copy.servicesPage.advancedCards[2].name, icon: <FlaskConical />, image: IMG.laserHair, desc: copy.servicesPage.advancedCards[2].desc, time: copy.servicesPage.advancedCards[2].time, price: copy.servicesPage.advancedCards[2].price }
-        ].map((s, i) => (
-          <div key={s.name} className="flex flex-col bg-white p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
-            <img
-              src={s.image}
-              alt=""
-              className="w-full h-44 object-cover rounded-lg mb-6"
-            />
-            <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-              {React.cloneElement(s.icon as React.ReactElement, { size: 24 })}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {copy.servicesPage.categories.map((cat) => {
+            const items = isWinter() && cat.title === 'Skin Rejuvenation'
+              ? cat.items.filter((i) => i !== 'Pico Laser')
+              : cat.items;
+            return (
+            <div key={cat.title} className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
+              <h3 className="text-xl font-headline text-primary mb-4">{cat.title}</h3>
+              <ul className="space-y-2 text-on-surface-variant text-sm leading-relaxed">
+                {items.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-[0.3rem] h-1.5 w-1.5 rounded-full bg-primary/60 shrink-0" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <h3 className="text-2xl mb-4">{s.name}</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed mb-8">{s.desc}</p>
-            <div className="mt-auto flex justify-between items-center pt-6 border-t border-outline-variant/10">
-              <span className="text-xs uppercase tracking-tighter text-stone-400 font-bold">Time: {s.time}</span>
-              <span className="text-primary font-bold">{s.price}</span>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
     </section>
 
