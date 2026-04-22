@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Mail, Phone, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Instagram, Facebook, Mail, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { IMG } from '../siteImages';
 
@@ -11,11 +11,14 @@ export default function Footer() {
           
           <div className="md:col-span-5 p-8 lg:p-16 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between">
             <div>
-              <Link to="/" className="inline-block mb-10">
+              <Link
+                to="/"
+                className="inline-block mb-10 rounded-md bg-pure p-3 shadow-sm ring-1 ring-ink/10 md:p-4"
+              >
                 <img
                   src={IMG.logo}
                   alt="Celine Medical Spa"
-                  className="h-14 md:h-16 w-auto max-w-[280px] object-contain object-left opacity-95 hover:opacity-100 transition-opacity"
+                  className="h-22 md:h-24 w-auto max-w-[380px] object-contain object-left"
                 />
               </Link>
               <p className="text-pure/60 max-w-sm font-light text-base leading-relaxed mb-10">
@@ -24,18 +27,17 @@ export default function Footer() {
             </div>
             
             <div className="flex flex-col gap-6">
-              <a href="tel:9727506100" className="inline-block px-10 py-4 bg-terracotta text-pure text-[11px] uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset transition-all w-fit shadow-xl shadow-terracotta/20 flex items-center gap-3">
-                <Phone size={14} />
+              <a href="tel:9727506100" className="inline-flex items-center justify-center px-10 py-4 bg-terracotta text-pure text-[11px] uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset w-fit shadow-xl shadow-terracotta/20">
                 (972) 750-6100
               </a>
               <div className="flex gap-6">
-                <a href="#" className="text-pure/40 hover:text-terracotta transition-colors">
+                <a href="#" className="text-pure/40 hover:text-terracotta">
                   <Instagram size={20} />
                 </a>
-                <a href="#" className="text-pure/40 hover:text-terracotta transition-colors">
+                <a href="#" className="text-pure/40 hover:text-terracotta">
                   <Facebook size={20} />
                 </a>
-                <a href="mailto:info@celinemedicalspa.com" className="text-pure/40 hover:text-terracotta transition-colors">
+                <a href="mailto:info@celinemedicalspa.com" className="text-pure/40 hover:text-terracotta">
                   <Mail size={20} />
                 </a>
               </div>
@@ -44,7 +46,7 @@ export default function Footer() {
 
           <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2">
             <div className="p-8 lg:p-16 border-b sm:border-b-0 sm:border-r border-white/10">
-              <h6 className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-10">Location & Hours</h6>
+              <h6 className="text-xs sm:text-sm uppercase tracking-[0.3em] font-bold text-terracotta mb-10">Location & Hours</h6>
               <ul className="space-y-8">
                 <li>
                   <span className="block text-sm font-bold text-pure mb-3 uppercase tracking-widest">Clinic Address</span>
@@ -69,7 +71,7 @@ export default function Footer() {
             </div>
             
             <div className="p-8 lg:p-16">
-              <h6 className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-10">Navigation</h6>
+              <h6 className="text-xs sm:text-sm uppercase tracking-[0.3em] font-bold text-terracotta mb-10">Navigation</h6>
               <ul className="space-y-6">
                 {[
                   { name: 'Services', path: '/services' },
@@ -78,28 +80,19 @@ export default function Footer() {
                   { name: 'Privacy Policy', path: '/privacy' }
                 ].map(item => (
                   <li key={item.name}>
-                    <Link to={item.path} className="text-base font-light text-pure/60 hover:text-terracotta transition-all flex items-center justify-between group">
+                    <Link to={item.path} className="text-base font-light text-pure/60 hover:text-terracotta flex items-center justify-between group">
                       <span>{item.name}</span>
-                      <ArrowUpRight size={16} className="text-terracotta opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0" />
+                      <ArrowUpRight size={16} className="text-terracotta opacity-0 group-hover:opacity-100" />
                     </Link>
                   </li>
                 ))}
-                <li className="pt-12 mt-12 border-t border-white/10">
-                  <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-4">Newsletter</div>
-                  <div className="flex">
-                    <input type="email" placeholder="Email Address" className="bg-white/5 border border-white/10 px-4 py-2 text-sm w-full outline-none focus:border-terracotta transition-colors rounded-l-[1px]" />
-                    <button className="bg-terracotta px-4 py-2 text-pure rounded-r-[1px] hover:bg-sunset transition-colors">
-                      <ArrowRight size={16} />
-                    </button>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
         </div>
         
         <div className="px-6 md:px-16 py-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-pure/30 font-bold">
-          <span>© 2024 Celine Medical Spa.</span>
+          <span>© 2026 Celine Medical Spa.</span>
           <span className="text-center md:text-right max-w-lg leading-loose">
             Medical Disclaimer: Information on this site is for educational purposes. Consult a physician for professional medical advice.
           </span>

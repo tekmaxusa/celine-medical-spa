@@ -1,18 +1,13 @@
-import { motion } from 'motion/react';
-import { Phone, Award, ShieldCheck, HeartPulse, UserCheck } from 'lucide-react';
+import { Award, ShieldCheck, HeartPulse, UserCheck } from 'lucide-react';
 import { IMG } from '../siteImages';
 
 export default function AboutUs() {
   return (
-    <div className="pt-20 bg-pure min-h-screen">
+    <div className="pt-[5.5rem] sm:pt-28 bg-pure min-h-screen">
       {/* Header Section */}
       <section className="bg-warm-light py-24 md:py-32 border-b border-line">
         <div className="max-w-[1400px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
+          <div className="max-w-4xl">
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">
               The Story of Celine
             </span>
@@ -23,7 +18,7 @@ export default function AboutUs() {
             <p className="text-slate text-lg md:text-xl font-light leading-relaxed max-w-2xl">
               At Celine Medical Spa, we believe aesthetic care should feel calm, informed, and deeply personal.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -36,9 +31,8 @@ export default function AboutUs() {
                 <img 
                   src={IMG.facility1} 
                   alt="Celine Medical Spa clinic interior" 
-                  className="absolute inset-0 w-full h-full object-cover object-center grayscale contrast-[1.05]"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-ink/10 mix-blend-multiply"></div>
               </div>
             </div>
             <div className="order-1 lg:order-2">
@@ -93,19 +87,15 @@ export default function AboutUs() {
                 title: "Ethical Planning", 
                 desc: "We don't chase trends. We build plans that age well, focusing on judgment, restraint, and experience with no shortcuts." 
               }
-            ].map((item, idx) => (
-              <motion.div
+            ].map((item) => (
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
                 className="p-10 border border-white/10 bg-white/5 backdrop-blur-sm"
               >
                 <div className="mb-8">{item.icon}</div>
                 <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">{item.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -163,8 +153,7 @@ export default function AboutUs() {
           <p className="text-slate text-lg font-light mb-12">
             With professional skincare aestheticians at Celine Medical Spa TODAY!
           </p>
-          <a href="tel:9727506100" className="inline-flex items-center gap-4 px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-2xl transition-all">
-            <Phone size={14} />
+          <a href="tel:9727506100" className="inline-flex items-center justify-center px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-2xl">
             Schedule a Consultation
           </a>
         </div>

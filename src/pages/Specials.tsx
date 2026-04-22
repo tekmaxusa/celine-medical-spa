@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Tag, Calendar } from 'lucide-react';
 
 export default function Specials() {
@@ -18,30 +17,23 @@ export default function Specials() {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-warm-light p-6">
+    <div className="pt-[5.5rem] sm:pt-28 min-h-screen bg-warm-light p-6">
       <div className="max-w-[1400px] mx-auto py-20">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
-        >
+        <div className="text-center mb-20">
           <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">Exclusive Offers</span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-ink mb-8">Current <span className="italic text-terracotta">Specials</span></h1>
           <p className="text-slate text-lg font-light leading-relaxed max-w-2xl mx-auto">
             Thoughtfully curated packages designed to support your skin&apos;s natural vitality.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {specials.map((s, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-pure p-12 border border-line shadow-sm hover:shadow-xl hover:shadow-terracotta/5 transition-all group relative overflow-hidden"
+              className="bg-pure p-12 border border-line shadow-sm hover:shadow-xl hover:shadow-terracotta/5 group relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-terracotta/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-terracotta/5 rounded-full -mr-16 -mt-16"></div>
               <Tag size={24} className="text-terracotta mb-8" />
               <h2 className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate mb-2">{s.title}</h2>
               <h3 className="text-3xl font-bold text-ink mb-6">{s.offer}</h3>
@@ -50,7 +42,7 @@ export default function Specials() {
                 <Calendar size={14} />
                 <span>Valid: {s.valid}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

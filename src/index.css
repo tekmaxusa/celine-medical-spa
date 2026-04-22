@@ -4,12 +4,32 @@
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  /* Paragraph-scale typography: default text-xs/text-sm are 12px/14px */
-  --text-xs: 0.8125rem;
-  --text-xs--line-height: calc(1 / 0.8125);
-  --text-sm: 0.9375rem;
-  --text-sm--line-height: calc(1.25 / 0.9375);
-  
+  /* Paragraph-scale typography: one step up from prior 13px/15px */
+  --text-xs: 0.875rem;
+  --text-xs--line-height: calc(1 / 0.875);
+  --text-sm: 1rem;
+  --text-sm--line-height: calc(1.25 / 1);
+
+  /* Headings / display: one step smaller than default Tailwind scale (xl←lg, 2xl←xl, …) */
+  --text-xl: 1.125rem;
+  --text-xl--line-height: calc(1.75 / 1.125);
+  --text-2xl: 1.25rem;
+  --text-2xl--line-height: calc(1.75 / 1.25);
+  --text-3xl: 1.5rem;
+  --text-3xl--line-height: calc(2 / 1.5);
+  --text-4xl: 1.875rem;
+  --text-4xl--line-height: calc(2.25 / 1.875);
+  --text-5xl: 2.25rem;
+  --text-5xl--line-height: calc(2.5 / 2.25);
+  --text-6xl: 3rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 3.75rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 4.5rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 6rem;
+  --text-9xl--line-height: 1;
+
   --color-pure: #ffffff;
   --color-warm-light: #FAF7F2;
   --color-warm-sand: #F2EDE4;

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import MobileFloatingUi from './components/MobileFloatingUi';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import AboutUs from './pages/AboutUs';
@@ -28,9 +29,10 @@ function ScrollToTop() {
 export default function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <div className="relative min-h-screen bg-warm-light font-sans text-ink selection:bg-terracotta selection:text-pure overflow-x-hidden flex flex-col">
+      <div className="relative min-h-screen bg-warm-light font-sans text-ink selection:bg-terracotta selection:text-pure overflow-x-hidden flex flex-col pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0">
         <ScrollToTop />
         <Navbar />
+        <MobileFloatingUi />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />

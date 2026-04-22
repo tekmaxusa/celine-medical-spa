@@ -1,8 +1,15 @@
-import { motion, AnimatePresence } from 'motion/react';
-import { Phone, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { IMG } from '../siteImages';
+
+/** URL hash for deep links from the home page (e.g. /services#pico-laser). */
+function serviceAnchorId(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\s*&\s*/g, '-')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 const SERVICE_GROUPS = [
   {
@@ -149,15 +156,11 @@ export default function Services() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="pt-20 bg-pure min-h-screen font-sans">
+    <div className="pt-[5.5rem] sm:pt-28 bg-pure min-h-screen font-sans">
       {/* Services Hero Header */}
       <section className="bg-warm-light py-24 md:py-32 border-b border-line">
         <div className="max-w-[1400px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
+          <div className="max-w-4xl">
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">
               Physician-Supervised Aesthetics in Plano
             </span>
@@ -172,7 +175,7 @@ export default function Services() {
                 At Celine Medical Spa, our services are not presented as a menu to browse—but as tools we use thoughtfully, based on what your skin truly needs.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -210,8 +213,7 @@ export default function Services() {
                   </p>
                   
                   <div className="flex flex-col gap-4">
-                    <a href="tel:9727506100" className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset transition-all shadow-lg shadow-terracotta/10">
-                      <Phone size={14} />
+                    <a href="tel:9727506100" className="inline-flex items-center justify-center px-8 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-lg shadow-terracotta/10">
                       Call to Discuss
                     </a>
                   </div>
@@ -219,24 +221,21 @@ export default function Services() {
 
                 {/* Cards Grid */}
                 <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-                  {group.items.map((item, itemIdx) => (
-                    <motion.div
+                  {group.items.map((item) => (
+                    <div
                       key={item.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: itemIdx * 0.1 }}
-                      className="flex flex-col group bg-warm-light/30 border border-line hover:border-terracotta/20 transition-all rounded-[2px] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-terracotta/5"
+                      id={serviceAnchorId(item.name)}
+                      className="flex flex-col group bg-warm-light/30 border border-line hover:border-terracotta/20 rounded-[2px] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-terracotta/5 scroll-mt-28 sm:scroll-mt-32"
                     >
-                      <div className="aspect-[16/10] overflow-hidden grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700">
+                      <div className="aspect-[16/10] overflow-hidden">
                         <img 
                           src={item.image} 
                           alt={item.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="p-8 md:p-10 flex-grow flex flex-col">
-                        <h3 className="text-2xl font-bold text-ink mb-2 group-hover:text-terracotta transition-colors">
+                        <h3 className="text-2xl font-bold text-ink mb-2 group-hover:text-terracotta">
                           {item.name}
                         </h3>
                         {item.subtitle && (
@@ -248,7 +247,7 @@ export default function Services() {
                           {item.description}
                         </p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -267,35 +266,26 @@ export default function Services() {
 
           <div className="space-y-6">
             {FAQS.map((faq, i) => (
-              <div key={i} className="bg-pure border border-line overflow-hidden shadow-sm rounded-[2px] transition-all hover:border-terracotta/20">
+              <div key={i} className="bg-pure border border-line overflow-hidden shadow-sm rounded-[2px] hover:border-terracotta/20">
                 <button 
+                  type="button"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full p-10 flex items-center justify-between text-left hover:bg-warm-light/10 transition-colors"
+                  className="w-full p-10 flex items-center justify-between text-left hover:bg-warm-light/10"
                 >
                   <span className="text-xl md:text-2xl font-bold text-ink pr-8">{faq.q}</span>
-                  <motion.div
-                    animate={{ rotate: openFaq === i ? 180 : 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  >
-                    <ChevronDown size={24} className="text-terracotta" />
-                  </motion.div>
+                  <ChevronDown
+                    size={24}
+                    className={`text-terracotta shrink-0 ${openFaq === i ? 'rotate-180' : ''}`}
+                    aria-hidden
+                  />
                 </button>
-                <AnimatePresence initial={false}>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    >
-                      <div className="px-10 pb-10">
-                        <p className="text-slate text-lg font-light leading-relaxed border-t border-line pt-8">
-                          {faq.a}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {openFaq === i && (
+                  <div className="px-10 pb-10">
+                    <p className="text-slate text-lg font-light leading-relaxed border-t border-line pt-8">
+                      {faq.a}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -313,13 +303,12 @@ export default function Services() {
             Book your professional assessment today and discover the new standard of self-care.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="tel:9727506100" className="inline-flex items-center gap-4 px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-2xl transition-all w-full sm:w-auto text-center justify-center">
-              <Phone size={14} />
+            <a href="tel:9727506100" className="inline-flex items-center justify-center px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-2xl w-full sm:w-auto text-center">
               (972) 750-6100
             </a>
-            <Link to="/#contact" className="inline-flex items-center gap-4 px-12 py-5 border border-line text-ink text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-warm-sand transition-all w-full sm:w-auto text-center justify-center">
+            <a href="tel:9727506100" className="inline-flex items-center gap-4 px-12 py-5 border border-line text-ink text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-warm-sand w-full sm:w-auto text-center justify-center">
               Visit Our Clinic
-            </Link>
+            </a>
           </div>
         </div>
       </section>

@@ -4,11 +4,16 @@
 const pub = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 
 export const IMG = {
-  logo: pub('/celine-logo.png'),
+  logo: pub('/celine-new-logo.png'),
   logoProSvg: pub('/celine-logo-pro.svg'),
   wordmarkSvg: pub('/celine-wordmark.svg'),
   homeHero: pub('/images/home-hero-reception.webp'),
   homeHeroAlt: pub('/images/home-hero.png'),
+  /** Home hero carousel (client photography) */
+  heroConsultation: pub('/images/hero-consultation.png'),
+  heroTreatmentSuite: pub('/images/hero-treatment-suite.png'),
+  heroTreatmentRoom: pub('/images/hero-treatment-room.png'),
+  heroReceptionPortrait: pub('/images/hero-reception-portrait.png'),
   facility1: pub('/images/facility-1.png'),
   facility2: pub('/images/facility-2.png'),
   botox: pub('/images/botox.png'),
