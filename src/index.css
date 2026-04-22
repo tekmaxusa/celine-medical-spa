@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  --color-pure: #ffffff;
+  --color-warm-light: #FAF7F2;
+  --color-warm-sand: #F2EDE4;
+  --color-sunset: #D35400;
+  --color-terracotta: #C87941;
+  --color-clay: #EBE4D9;
+  --color-ink: #1A1A1A;
+  --color-slate: #555555;
+  --color-line: #E2D9CD;
+}
+
+@layer base {
+  body {
+    @apply bg-warm-light text-ink font-sans antialiased selection:bg-terracotta selection:text-pure;
+  }
+}
+
+.border-line {
+  border-color: var(--color-line);
+}
+
+.bg-sunset-gradient {
+  background: linear-gradient(135deg, #D35400 0%, #C87941 100%);
+}
