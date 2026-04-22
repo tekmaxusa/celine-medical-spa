@@ -27,7 +27,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="relative min-h-screen bg-warm-light font-sans text-ink selection:bg-terracotta selection:text-pure overflow-x-hidden flex flex-col">
         <ScrollToTop />
         <Navbar />
