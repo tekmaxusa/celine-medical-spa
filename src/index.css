@@ -3,6 +3,12 @@
 
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Paragraph-scale typography: default text-xs/text-sm are 12px/14px */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: calc(1 / 0.8125);
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: calc(1.25 / 0.9375);
   
   --color-pure: #ffffff;
   --color-warm-light: #FAF7F2;
