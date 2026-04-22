@@ -345,19 +345,20 @@ export default function Home() {
               <div className="absolute inset-0 p-8 lg:p-12">
                 <div className="w-full h-full rounded-[40px] overflow-hidden relative group">
                   <img 
-                    src={IMG.derma} 
-                    alt="Consultation at Celine Medical Spa" 
+                    src={IMG.heroConsultation} 
+                    alt="Physician examining a client during a medical spa consultation in a bright, modern clinic." 
                     className="absolute inset-0 w-full h-full object-cover object-center"
                   />
                   
-                  <div className="absolute top-8 right-8 bg-pure/95 backdrop-blur shadow-2xl p-8 rounded-[20px] border border-line max-w-[280px]">
-                    <span className="inline-block px-3 py-1.5 bg-terracotta text-pure text-[9px] uppercase tracking-widest font-bold rounded-full mb-6">
-                      ● What you can expect
+                  <div className="absolute top-8 right-8 bg-pure/95 backdrop-blur shadow-2xl p-8 rounded-[20px] border border-line max-w-[300px]">
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-5 block">
+                      What you can expect
                     </span>
-                    <ul className="space-y-4">
+                    <ul className="space-y-3">
                       {["Unrushed conversation about your goals", "Skin and facial assessment", "Clear recommendations and timing", "No obligation to book treatment"].map((item, i) => (
-                        <li key={i} className="text-[11px] text-ink font-bold flex items-start gap-3">
-                          <span className="text-terracotta mt-[2px]">•</span> {item}
+                        <li key={i} className="text-sm text-slate flex items-start gap-2 font-light leading-relaxed">
+                          <span className="text-terracotta mt-[2px] shrink-0 text-sm" aria-hidden>●</span>
+                          {item}
                         </li>
                       ))}
                     </ul>

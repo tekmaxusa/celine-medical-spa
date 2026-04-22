@@ -28,15 +28,12 @@ export default function Navbar() {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 bg-warm-light/90 backdrop-blur-md border-b border-line">
         <div className="max-w-[1400px] mx-auto px-6 py-3 sm:py-4 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3 min-w-0" aria-label="Celine Medical Spa home">
+          <Link to="/" className="flex items-center min-w-0" aria-label="Celine Medical Spa home">
             <img
               src={IMG.logo}
               alt="Celine Medical Spa"
               className="h-16 w-auto sm:h-20 object-contain shrink-0"
             />
-            <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-terracotta border-l border-line pl-3 h-4 leading-4 font-bold">
-              Medical Spa
-            </span>
           </Link>
 
           {/* Desktop Nav */}

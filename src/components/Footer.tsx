@@ -4,7 +4,10 @@ import { IMG } from '../siteImages';
 
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-line bg-ink text-pure overflow-hidden relative">
+    <footer
+      id="contact"
+      className="border-t border-line bg-ink text-pure overflow-hidden relative pb-[calc(5rem+env(safe-area-inset-bottom,0px))] md:pb-0"
+    >
       <div className="absolute top-0 left-0 w-full h-1 bg-terracotta"></div>
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 border-b border-white/10">
