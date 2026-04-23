@@ -4,7 +4,7 @@
 const pub = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 
 export const IMG = {
-  logo: pub('/celine-new-logo.png'),
+  logo: pub('/celine-logo-transparent.png'),
   logoProSvg: pub('/celine-logo-pro.svg'),
   wordmarkSvg: pub('/celine-wordmark.svg'),
   homeHero: pub('/images/home-hero-reception.webp'),

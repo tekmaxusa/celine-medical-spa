@@ -54,3 +54,7 @@
 .bg-sunset-gradient {
   background: linear-gradient(135deg, #D35400 0%, #C87941 100%);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

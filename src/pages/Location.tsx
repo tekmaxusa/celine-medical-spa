@@ -2,30 +2,30 @@ import { MapPin, Mail, Clock } from 'lucide-react';
 
 export default function Location() {
   return (
-    <div className="pt-[5.5rem] sm:pt-28 min-h-screen bg-warm-light px-4 py-6 sm:p-6 overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-warm-light px-4 py-6 pt-[5rem] sm:p-6 sm:pt-[5rem] md:pt-[3.75rem] lg:pt-[4.75rem]">
       <div className="max-w-[1400px] mx-auto py-20 w-full min-w-0">
         <div className="text-center mb-20">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">Visit Our Clinic</span>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-ink mb-8">Conveniently Located in <span className="italic text-terracotta">Plano</span></h1>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-light text-terracotta mb-6 block">Visit Our Clinic</span>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight text-ink mb-8">Conveniently Located in <span className="italic text-terracotta">Plano</span></h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start w-full min-w-0">
           <div className="bg-pure p-8 sm:p-10 border border-line shadow-sm rounded-[2px] min-w-0">
-            <h2 className="text-2xl font-bold text-ink mb-10">Contact Details</h2>
+            <h2 className="text-2xl font-light text-ink mb-10">Contact Details</h2>
             <ul className="space-y-8">
               <li className="flex items-start gap-6">
                 <div className="w-12 h-12 rounded-full bg-warm-sand flex items-center justify-center shrink-0">
                   <MapPin size={20} className="text-terracotta" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xs uppercase tracking-widest font-bold text-slate mb-2">Address</h3>
+                  <h3 className="text-xs uppercase tracking-widest font-light text-slate mb-2">Address</h3>
                   <p className="text-ink font-light text-lg break-words">5168 Village Creek Drive, Suite 300<br/>Plano, Texas 75093</p>
                 </div>
               </li>
               <li className="flex items-start gap-6 pt-8 border-t border-line">
                 <div className="w-12 h-12 rounded-full bg-warm-sand shrink-0" aria-hidden />
                 <div className="min-w-0">
-                  <h3 className="text-xs uppercase tracking-widest font-bold text-slate mb-2">Phone</h3>
+                  <h3 className="text-xs uppercase tracking-widest font-light text-slate mb-2">Phone</h3>
                   <a href="tel:9727506100" className="text-ink font-light text-lg hover:text-terracotta">(972) 750-6100</a>
                 </div>
               </li>
@@ -34,7 +34,7 @@ export default function Location() {
                   <Clock size={20} className="text-terracotta" />
                 </div>
                 <div className="min-w-0 w-full">
-                  <h3 className="text-xs uppercase tracking-widest font-bold text-slate mb-2">Hours</h3>
+                  <h3 className="text-xs uppercase tracking-widest font-light text-slate mb-2">Hours</h3>
                   <div className="space-y-1 text-ink font-light text-lg">
                     <p className="flex flex-wrap justify-between gap-x-4 gap-y-1 w-full max-w-md"><span>Mon – Fri:</span> <span>9:00 AM – 6:00 PM</span></p>
                     <p className="flex flex-wrap justify-between gap-x-4 gap-y-1 w-full max-w-md"><span>Sat:</span> <span>10:00 AM – 5:00 PM</span></p>

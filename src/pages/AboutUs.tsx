@@ -3,15 +3,15 @@ import { IMG } from '../siteImages';
 
 export default function AboutUs() {
   return (
-    <div className="pt-[5.5rem] sm:pt-28 bg-pure min-h-screen">
+    <div className="min-h-screen bg-pure pt-[5rem] md:pt-[3.75rem] lg:pt-[4.75rem]">
       {/* Header Section */}
       <section className="bg-warm-light py-24 md:py-32 border-b border-line">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="max-w-4xl">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-light text-terracotta mb-6 block">
               The Story of Celine
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-ink mb-8 leading-[1.1]">
+            <h1 className="text-5xl md:text-7xl font-light tracking-tight text-ink mb-8 leading-[1.1]">
               Thoughtful Aesthetics. <br />
               <span className="italic text-terracotta text-4xl md:text-6xl">Medical Integrity. Long-Term Care.</span>
             </h1>
@@ -36,7 +36,7 @@ export default function AboutUs() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-10">About Celine Medical Spa</h2>
+              <h2 className="text-3xl md:text-4xl font-light text-ink mb-10">About Celine Medical Spa</h2>
               <div className="space-y-8 text-slate text-base md:text-lg font-light leading-relaxed">
                 <p>
                   Our approach is not built on trends or aggressive treatments—but on medical expertise, ethical planning, and long-term skin health.
@@ -63,8 +63,8 @@ export default function AboutUs() {
         
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="max-w-3xl mb-24">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-terracotta mb-6 block">Our Philosophy</span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-10">Prevention <span className="italic text-terracotta">Over</span> Correction</h2>
+            <span className="text-[10px] uppercase tracking-[0.4em] font-light text-terracotta mb-6 block">Our Philosophy</span>
+            <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-10">Prevention <span className="italic text-terracotta">Over</span> Correction</h2>
             <p className="text-white/60 text-lg font-light leading-relaxed italic">
               "K-beauty emphasizes something often overlooked in modern aesthetics—gentle consistency over dramatic change."
             </p>
@@ -93,7 +93,7 @@ export default function AboutUs() {
                 className="p-10 border border-white/10 bg-white/5 backdrop-blur-sm"
               >
                 <div className="mb-8">{item.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <h3 className="text-2xl font-light mb-4">{item.title}</h3>
                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -106,7 +106,7 @@ export default function AboutUs() {
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-10 leading-tight">A Medically Guided <br />Standard of Care</h2>
+              <h2 className="text-3xl md:text-4xl font-light text-ink mb-10 leading-tight">A Medically Guided <br />Standard of Care</h2>
               <div className="space-y-6 text-slate text-base md:text-lg font-light leading-relaxed">
                 <p>
                   Celine Medical Spa operates under licensed medical oversight with physician involvement on-site. This ensures every treatment decision is made with safety, anatomy, and evidence-based protocols in mind.
@@ -118,7 +118,7 @@ export default function AboutUs() {
             </div>
             <div className="bg-pure p-10 md:p-16 border border-line shadow-2xl relative">
               <div className="absolute top-0 right-0 w-2 h-full bg-terracotta/20"></div>
-              <h3 className="text-xl font-bold text-ink mb-10 flex items-center gap-4">
+              <h3 className="text-xl font-light text-ink mb-10 flex items-center gap-4">
                 <UserCheck className="text-terracotta" />
                 Who We Serve
               </h3>
@@ -146,14 +146,14 @@ export default function AboutUs() {
       {/* Final Call */}
       <section className="py-32 text-center bg-pure">
         <div className="max-w-3xl mx-auto px-6">
-          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-terracotta mb-8 block font-bold">The Journey</span>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-ink mb-12 italic">
+          <span className="text-[10px] uppercase tracking-[0.4em] font-light text-terracotta mb-8 block">The Journey</span>
+          <h2 className="text-4xl md:text-6xl font-light tracking-tight text-ink mb-12 italic">
             Let Your Journey <span className="text-terracotta">Begin</span>
           </h2>
           <p className="text-slate text-lg font-light mb-12">
             With professional skincare aestheticians at Celine Medical Spa TODAY!
           </p>
-          <a href="tel:9727506100" className="inline-flex items-center justify-center px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-bold rounded-[2px] hover:bg-sunset shadow-2xl">
+          <a href="tel:9727506100" className="inline-flex items-center justify-center px-12 py-5 bg-terracotta text-pure text-xs uppercase tracking-widest font-light rounded-[2px] hover:bg-sunset shadow-2xl">
             Schedule a Consultation
           </a>
         </div>

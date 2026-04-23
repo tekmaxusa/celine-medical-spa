@@ -17,11 +17,11 @@ export default function Specials() {
   ];
 
   return (
-    <div className="pt-[5.5rem] sm:pt-28 min-h-screen bg-warm-light p-6">
+    <div className="min-h-screen bg-warm-light p-6 pt-[5rem] md:pt-[3.75rem] lg:pt-[4.75rem]">
       <div className="max-w-[1400px] mx-auto py-20">
         <div className="text-center mb-20">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-terracotta mb-6 block">Exclusive Offers</span>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-ink mb-8">Current <span className="italic text-terracotta">Specials</span></h1>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-light text-terracotta mb-6 block">Exclusive Offers</span>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight text-ink mb-8">Current <span className="italic text-terracotta">Specials</span></h1>
           <p className="text-slate text-lg font-light leading-relaxed max-w-2xl mx-auto">
             Thoughtfully curated packages designed to support your skin&apos;s natural vitality.
           </p>
@@ -35,10 +35,10 @@ export default function Specials() {
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-terracotta/5 rounded-full -mr-16 -mt-16"></div>
               <Tag size={24} className="text-terracotta mb-8" />
-              <h2 className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate mb-2">{s.title}</h2>
-              <h3 className="text-3xl font-bold text-ink mb-6">{s.offer}</h3>
+              <h2 className="text-[10px] uppercase tracking-[0.3em] font-light text-slate mb-2">{s.title}</h2>
+              <h3 className="text-3xl font-light text-ink mb-6">{s.offer}</h3>
               <p className="text-slate font-light leading-relaxed mb-10">{s.desc}</p>
-              <div className="flex items-center gap-3 text-terracotta font-bold text-[10px] uppercase tracking-widest pt-8 border-t border-line">
+              <div className="flex items-center gap-3 text-terracotta font-light text-[10px] uppercase tracking-widest pt-8 border-t border-line">
                 <Calendar size={14} />
                 <span>Valid: {s.valid}</span>
               </div>
